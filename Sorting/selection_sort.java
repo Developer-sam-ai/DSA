@@ -53,5 +53,22 @@ public class selection_sort {
 		// and to always calculate the min just assign the index to i or any thing and change it when min is found then we can swap it 
 		
 		// we were confused between things like swapping where and main thing was our method to find min it was wrong 
+		
+		
+//		int arr[]= {1,21,22,1,12,2,12,23,21,24};
+//		for(int i=0;i<=arr.length-1;i++) {
+//			int index=i;
+//			int min=arr[i];
+//			for(int j=i+1;j<arr.length;j++) {
+//				if(min>arr[j]) {
+//					min=arr[j];
+//					index=j;
+//				}
+//			}
+//			 int temp=arr[i];
+//			 arr[i]=arr[index];
+//			 arr[index]=temp;
+//		}
+//		System.out.println(Arrays.toString(arr));
 	}
 }
