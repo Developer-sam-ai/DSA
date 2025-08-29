@@ -1,5 +1,3 @@
-package Sorting;
-
 import java.util.Arrays;
 //don donn palti is known as bubble sort
 public class bubble_sort {
@@ -17,6 +15,5 @@ public class bubble_sort {
         System.out.println(Arrays.toString(nums));
     }
     
-    
-    // it is very simple 
+
 }
