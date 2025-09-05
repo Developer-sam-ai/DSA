@@ -1,5 +1,3 @@
-package Basics_and_more;
-
 public class fact_by_recur {
 	public static int multi=1;
     public static void main(String...args){

@@ -1,5 +1,3 @@
-package Basics_and_more;
-
 public class pallindr_leetcode {
     public static void main(String...args) {
        String hello="A man, a plan, a canal: Panama";
