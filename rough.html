@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Linked List Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #a1c4fd, #c2e9fb);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Top bar */
+    header {
+      width: 100%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      letter-spacing: 1px;
+    }
+
+    /* Setup Form */
+    #setup {
+      margin-top: 80px;
+      padding: 40px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 350px;
+      animation: fadeIn 1s ease;
+    }
+
+    #setup h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      font-size: 16px;
+      font-weight: bold;
+      display: block;
+      margin: 15px 0 5px;
+    }
+
+    select, input {
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      outline: none;
+    }
+
+    /* Buttons */
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      margin: 10px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    button:disabled {
+      background: #bbb;
+      cursor: not-allowed;
+    }
+
+    /* List container */
+    #listContainer {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    #list {
+      display: flex;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .node {
+      width: 120px;
+      height: 80px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #c3f0ca, #d9e4f5);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      margin: 0 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.6s ease;
+      position: relative;
+    }
+
+    .node.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .node.highlight {
+      box-shadow: 0 0 20px #ff9800;
+      transform: scale(1.1);
+    }
+
+    .label {
+      font-weight: bold;
+    }
+
+    .next, .prev {
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .arrow {
+      position: absolute;
+      width: 100px;
+      height: 50px;
+      top: 50%;
+      left: 100%;
+      display: none;
+    }
+
+    .arrow path {
+      stroke-dasharray: 150;
+      stroke-dashoffset: 150;
+      animation: draw 1s forwards;
+    }
+
+    @keyframes draw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    /* Head pointer arrow */
+    .head {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      color: #222;
+    }
+
+    .head-arrow {
+      margin-left: 10px;
+      font-size: 24px;
+      color: #000;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9);}
+      to { opacity: 1; transform: scale(1);}
+    }
+  </style>
+</head>
+<body>
+  <header>Linked List Project</header>
+
+  <!-- Selection Screen -->
+  <div id="setup">
+    <h2>⚙️ Create Your Linked List</h2>
+    <label>Choose Linked List Type:</label>
+    <select id="listType">
+      <option value="singly">Singly</option>
+      <option value="doubly">Doubly</option>
+    </select>
+    
+    <label>Enter length (2–5):</label>
+    <input type="number" id="lengthInput" min="2" max="5" value="4">
+
+    <br>
+    <button onclick="startList()">🚀 Start</button>
+  </div>
+
+  <!-- Linked List Display -->
+  <div id="listContainer" style="display:none;">
+    <div class="head">Head <span class="head-arrow">⟶</span></div>
+    <div id="list"></div>
+
+    <div id="controls">
+      <button id="prevBtn" style="display:none;">⬅ Previous</button>
+      <button id="nextBtn">Next ➡</button>
+    </div>
+  </div>
+
+  <script>
+    let step = 0;
+    let length = 0;
+    let listType = "singly";
+    let nodes = [];
+
+    function getRandomAddress() {
+      return "0x" + Math.floor(Math.random() * 0xffff).toString(16);
+    }
+
+    function startList() {
+      listType = document.getElementById("listType").value;
+      length = parseInt(document.getElementById("lengthInput").value);
+      document.getElementById("setup").style.display = "none";
+      document.getElementById("listContainer").style.display = "block";
+
+      // Create first node
+      createNode(10, 1);
+    }
+
+    function createNode(value, index) {
+      const node = document.createElement("div");
+      node.classList.add("node");
+      node.id = "node" + index;
+
+      let nextVal = (index === length) ? "NULL" : "0x0000";
+      let prevVal = (index === 1) ? "NULL" : "0x0000";
+
+      node.innerHTML = `
+        <div class="label">Data: ${value}</div>
+        ${listType === "doubly" ? `<div class="prev">Prev: ${prevVal}</div>` : ""}
+        <div class="next">Next: ${nextVal}</div>
+        <svg class="arrow" id="arrow${index}">
+          <path d="M 10 25 Q 50 -20, 90 25" stroke="black" stroke-width="2" fill="transparent" marker-end="url(#arrowhead)" />
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="black" />
+            </polygon>
+          </defs>
+        </svg>
+      `;
+      document.getElementById("list").appendChild(node);
+
+      setTimeout(() => node.classList.add("show"), 200);
+      nodes.push(node);
+    }
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      if (step < length - 1) {
+        const current = nodes[step];
+        current.classList.add("highlight");
+
+        // Create new node with value multiples of 10
+        const newVal = (step + 2) * 10;
+        createNode(newVal, step + 2);
+
+        const address = (step + 1 === length - 1) ? "NULL" : getRandomAddress();
+
+        setTimeout(() => {
+          current.querySelector(".next").innerText = "Next: " + address;
+          current.querySelector(".arrow").style.display = "block";
+          current.classList.remove("highlight");
+
+          if (listType === "doubly") {
+            nodes[step + 1].querySelector(".prev").innerText = "Prev: " + getRandomAddress();
+          }
+        }, 800);
+
+        step++;
+
+        if (step === length - 1) {
+          document.getElementById("nextBtn").style.display = "none";
+          if (listType === "doubly") {
+            document.getElementById("prevBtn").style.display = "inline-block";
+          }
+        }
+      }
+    });
+
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      if (step > 0) {
+        nodes[step].classList.add("highlight");
+        step--;
+        nodes[step].classList.add("highlight");
+        setTimeout(() => nodes[step].classList.remove("highlight"), 800);
+        if (step === 0) {
+          document.getElementById("prevBtn").style.display = "none";
+        }
+      }
+    });
+  </script>
+</body>
+</html>

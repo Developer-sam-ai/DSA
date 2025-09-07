@@ -17,7 +17,6 @@ public class O3_sorted_or_not{
         if(a[a.length-1]>a[0]){
                 count++;
             }
-        
         System.out.println(count);
     }
 }
