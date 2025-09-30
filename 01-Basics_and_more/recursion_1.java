@@ -1,5 +1,3 @@
-package Basics_and_more;
-
 public class recursion_1 {
 	public static int sum=1;
 	public static void main(String...args) {
