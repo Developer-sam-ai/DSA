@@ -50,11 +50,25 @@ public class O12_longestsub_array {
 
     //? by hashmap we can do it i O(n)
     public static void main(String...args){
-        int arr[]={-3,2,10};
-        int key=9;
-    }
+        int arr[]={10, 5, 2, 7, 1, 9};
+        int target=15;
+        int summy=0;
     HashMap<Integer, Integer> seen=new HashMap<>();
-    
+    //~ here we have to add more numbers than 2 so we do like store the sum in the hashmap not the real index like we did i two sum
 
+    for (int i=0;i<=arr.length-1;i++){
+        summy+=arr[i];
+        if(seen.containsKey(summy-target)){
+            // System.out.println("["+seen.get(summy)+","+seen.get(summy-target)+"]");
+            // seen.put(summy,i);
+            int start=seen.get(summy-target)+1;
+            int end=i;
+            System.out.println("["+start+","+end+"]");
+            
+    }
+    seen.put(summy,i);
+    }
+
+}
 }
 // 
