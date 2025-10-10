@@ -52,12 +52,10 @@ import java.util.Arrays;
 
 //     }
 // }
-                
 
 
 //! sam to try it by own ok
-
-//?   quick sort it is
+//?  quick sort it is
 public class quick_sort{
     public static void main(String[] args) {
         int arr[]={3,45,21,78,233,8,0,1,2};
