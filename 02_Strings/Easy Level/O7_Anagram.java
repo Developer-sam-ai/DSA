@@ -1,8 +1,5 @@
 
 import java.util.HashMap;
-
-
-
 public class O7_Anagram {
     public static void main(String...args){
         String s="123@@###abc";
