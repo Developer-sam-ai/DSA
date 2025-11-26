@@ -46,5 +46,6 @@ public class insert_head {
         d1.add_head(34);
         d1.add_head(23);
         d1.println();
+        
     }
 }
