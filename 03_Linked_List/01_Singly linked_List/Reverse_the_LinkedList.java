@@ -8,5 +8,8 @@ public class Reverse_the_LinkedList {
         Listnode front=head;
 
         while(
+
+
+            
     }
 }
