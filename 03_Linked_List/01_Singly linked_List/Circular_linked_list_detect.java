@@ -12,5 +12,5 @@ public class Circular_linked_list_detect {
             }
         }
         return false;
-    }
+    } 
 }
