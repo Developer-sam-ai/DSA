@@ -1,15 +1,17 @@
 public class Reverse_the_LinkedList {
     public static void main(String...args){
-        ListNode temp=head;
-        while(temp!=null){
-            temp=temp.next;
-        }
-        Listnode back=temp;
-        Listnode front=head;
+        //~ to reverse the linked list we will do 
+    
+    //!  Node current=head;
+    Node prev=null;
+    while(temp!=null){
+        Node nexty=current.next;
+        current.next=prev;
+        prev=current;
+        current=nexty;
 
-        while(
+        //~ return prev;
+    }
 
-
-            
     }
 }
