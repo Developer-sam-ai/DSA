@@ -37,20 +37,39 @@ public class O2_Delete_all_ocuurence{
         d.prev=c;
 
         Solution s=new Solution();
-        s.deleteAllOccurrences(a,1);
+        ListNode ans=s.deleteAllOccurrences(a,1);
+        ListNode temp = ans;
+    while (temp != null) {
+    System.out.print(temp.val);
+    if (temp.next != null) {
+        System.out.print(" <-> ");
+    }
+    temp = temp.next;
+}
+System.out.println();
     }
 }
 
+
+//^ learnt many things in here like in doubly linked list we have two pointers so use them wisely if we got the number set a pointer next and one before 
+//! use all things and then connect them
 class Solution {
     public ListNode deleteAllOccurrences(ListNode head, int target) {
-        ListNode temp=head;
-        if(head.val==target){
-            head.next=null;
+        if(head!=null && head.val==target ){
             head=head.next;
+            if(head!=null)head.prev=null;
         }
-        while(temp.next.next.val!=target ){
-            temp=temp.next.next;
-            
+        if(head==null) return null;
+        ListNode temp=head;
+        while(temp!=null ){
+            if(temp.val==target){
+                ListNode back=temp.prev;
+                ListNode front=temp.next;
+                if (back != null) back.next = front;
+                if (front != null) front.prev = back;
         }
+        temp=temp.next;
+    }
+        return head;
     }
 }
