@@ -49,7 +49,7 @@ class Solution{
             
             return head; 
             //
-            why should we return head instead of odd?
-            ->  lets go by the flow
+            // why should we return head instead of odd?
+            // ->  lets go by the flow
         }
 }
