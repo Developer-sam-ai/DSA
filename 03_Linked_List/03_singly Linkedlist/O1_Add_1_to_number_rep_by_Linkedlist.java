@@ -1,6 +1,4 @@
 
-import java.text.Normalizer;
-
 class ListNode {
     int val;
     ListNode next;
@@ -66,7 +64,7 @@ class Solution {
             tempe=tempe.next;
         }
         if (carry > 0) {
-            ListNode newNode = new ListNode(1);
+            ListNode newNode = new ListNode(0);
             // go to last node of reversed list
             ListNode last = reversedLL;
             while (last.next != null) last = last.next;
