@@ -60,6 +60,7 @@ class Solution {
     // 1.we reverse the k groups like if k=2 then 2-2 groups get reversed so we use the recursion of reversedgroup(temp,k)
     //2 logic is correct but we laggedd in where to guide the next thing so as the node 1 comes to the tail but every node is distorted 
     // except head that becomes our new tail which we failed to discover  
-        return prev;
+    
+    return prev;
     }
 }
