@@ -48,10 +48,23 @@ class Solution {
             // we have to just add the digit inside the LL
             curr.next=new ListNode(digit);
             curr=curr.next;
-            list1=list1.next;
-            list2=list2.next;
+            if(list1!=null) list1=list1.next;
+            if(list2!=null) list2=list2.next;
+        }
+        if(carry>0){
+            ListNode carried=new ListNode(carry);
+            curr.next=carried;
         }
 
         return dummy.next;
     }
 }
+
+// some imp points 
+// 1. we create a dummy and then link current pointer to it
+// 2. always add the sum at last to the node to avoid confusion
+// 3. alwasy check null pointer exception(!=null) 
+// if no value take 0 is handeled like
+                     //  if(l1!=null)?l1.val:0;
+                      // this is how we should handle it
+// carry must me added first and at last if carry>0 then create new node and then add the node at last
