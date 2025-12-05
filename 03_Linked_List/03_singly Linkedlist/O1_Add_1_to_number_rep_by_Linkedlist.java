@@ -21,7 +21,7 @@ class ListNode {
 
 public class O1_Add_1_to_number_rep_by_Linkedlist {
         public static void main(String[] args) {
-            ListNode a=new ListNode(1);
+        ListNode a=new ListNode(1);
         ListNode b=new ListNode(9);
         ListNode c=new ListNode(9);
         ListNode d=new ListNode(9);
