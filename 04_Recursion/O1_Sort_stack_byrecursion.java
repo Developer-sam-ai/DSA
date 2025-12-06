@@ -18,7 +18,6 @@ class Solution {
     public void sortStack(Stack<Integer> st) {
         if(st.isEmpty())return;
         int top=st.pop();
-
         sortStack(st);
 
     }
