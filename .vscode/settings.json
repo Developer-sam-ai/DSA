@@ -3,6 +3,7 @@
         "Mergesort",
         "nextstep",
         "prec",
-        "prevsize"
+        "prevsize",
+        "stri"
     ]
 }
