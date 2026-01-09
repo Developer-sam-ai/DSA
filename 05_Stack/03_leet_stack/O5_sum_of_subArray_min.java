@@ -15,7 +15,6 @@ public class O5_sum_of_subArray_min {
             while(!st.isEmpty() && arr[st.peek()]>current){
                 int midindex=st.pop();
                 int midvalue=arr[midindex];
-
                 int rightboundary=i;
                 int leftboundary=st.peek();
 
