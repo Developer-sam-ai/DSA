@@ -11,7 +11,9 @@ public class O1_Sum_of_SubArray_Ranges {
     long totalsum=0;
 
     for(int i=0;i<=n;i++){
+
         int current = (i == n) ? Integer.MIN_VALUE : arr[i];
+        
         while(!st.isEmpty() && arr[st.peek()]>current){
             // jab tak bada elemetn milta jata hai aage badte jao
             int midindex=st.pop();
